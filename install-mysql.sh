@@ -4,14 +4,16 @@
 
 User_status=$(id -u)
 
-if [ $User_status -ne 0]; then 
+if [ $User_status -ne 0 ]; then 
     echo "Login with root user to run this script!"
 
     else
+        
         dnf install mysql-server -y 
-        Exit_Status=$($?)
+        
+        Exit_Status=$?
 
-        if [ Exit_Status -ne 0]; then 
+        if [ $Exit_Status -ne 0]; then 
             echo "MySql server installation failed."
             
             else
