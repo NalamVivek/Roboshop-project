@@ -6,6 +6,7 @@ USERID=$(id -u)
 
 if [ $USERID != 0 ]; then 
     echo "Please login as root user to run the script!"
+    exit 1
     else
     echo "Root user verification successful"
 fi 
@@ -20,7 +21,7 @@ VALIDATE()
     fi  
 }
 
-cp -p /C/DevOps/repos/Roboshop-project/mongodb.repo /etc/yum.repos.d/mongo.repo
+cp -p /home/ec2-user/Roboshop-project/mongodb.repo /etc/yum.repos.d/mongo.repo
 
 dnf install mongodb-org -y 
 VALIDATE $? "Installing MongoDB"
