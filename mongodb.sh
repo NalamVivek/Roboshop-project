@@ -2,13 +2,20 @@
 
 #! /bin/bash 
 
+
+SCRIPT_NAME=$( echo $0 | cut -d "." -f1 )
+LOG_FOLDER="/home/ec2-user/Roboshop-project/logs"
+LOG_FILE="$LOG_FOLDER/$SCRIPT_NAME.log"
+
+mkdir -= $LOG_FOLDER
+
 USERID=$(id -u)
 
 if [ $USERID != 0 ]; then 
     echo "Please login as root user to run the script!"
     exit 1
     else
-    echo "Root user verification successful"
+    echo "Root user verification successful."
 fi 
 
 VALIDATE()
@@ -23,7 +30,7 @@ VALIDATE()
 
 cp -p /home/ec2-user/Roboshop-project/mongodb.repo /etc/yum.repos.d/mongo.repo
 
-dnf install mongodb-org -y 
+dnf install mongodb-org -y &>>$LOG_FILE
 VALIDATE $? "Installing MongoDB"
 
 systemctl enable mongod 
@@ -38,4 +45,4 @@ sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf
 VALIDATE $? "Updating listen address"
 
 systemctl restart mongod
-VALIDATE $? "Restarting the service"
+VALIDATE $? "Restarting the service is"
