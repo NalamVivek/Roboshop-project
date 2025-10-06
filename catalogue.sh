@@ -87,7 +87,7 @@ if [ $INDEX -le 0 ]; then
     mongosh --host $MONGODB_HOST </app/db/master-data.js &>>$LOG_FILE
     VALIDATE $? "Load catalogue products"
 else
-    echo -e "Catalogue products already loaded ... $Y SKIPPING $N"
+    echo -e "Catalogue products already loaded ... SKIPPING"
 fi
 
 systemctl restart catalogue

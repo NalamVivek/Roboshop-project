@@ -7,7 +7,7 @@ SCRIPT_NAME=$( echo $0 | cut -d "." -f1 )
 LOG_FOLDER="/home/ec2-user/Roboshop-project/logs"
 LOG_FILE="$LOG_FOLDER/$SCRIPT_NAME.log"
 
-mkdir -= $LOG_FOLDER
+mkdir -p $LOG_FOLDER
 
 USERID=$(id -u)
 
